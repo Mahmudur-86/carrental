@@ -3,6 +3,8 @@ import Title from '../../components/owner/Title'
 import { assets} from '../../assets/assets'
 const AddCar = () => {
 
+  const currency = import.meta.env.VITE_CURRENCY
+
 
 const [image, setImage] =useState(null)
 const [car, setCar] = useState({
@@ -64,10 +66,57 @@ d.preventDefault()
 </div>
 
 
-{/* car yar, price,category */}
-<div>
+{/* car year, price,category */}
+<div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6'>
+ <div className='flex flex-col w-full'>
+    <label htmlFor="">Year </label>
+    <input type="number" placeholder='2025' required className='px-3 py-3 mt-1 border border-b-sky-950 rounded-md outline-amber-500' value={car.year} onChange={e=> setCar({...car, year: e.target.value})} />
+  </div>
+ <div className='flex flex-col w-full'>
+    <label htmlFor="">Daily Price ({currency }) </label>
+    <input type="number" placeholder='100' required className='px-3 py-3 mt-1 border border-b-sky-950 rounded-md outline-amber-500' value={car.pricePerDay} onChange={e=> setCar({...car, pricePerDay: e.target.value})} />
+  </div>
+
+   <div className='flex flex-col w-full'>
+    <label>Category</label>
+    <select onChange={e=> setCar({...car, category:e.target.value})}  value={car.category} className='px-3 py-2 mt-1 border border-borderColor rounded-md outline-amber-950'>
+      <option value="">Select a category</option>
+      <option value="Sedan">Sedan</option>
+      <option value="SUV">SUV</option>
+      <option value="Racing">Racing</option>
+      <option value="Van">Van</option>
+    </select>
   
+  </div>
+
+
+
 </div>
+
+{/* car fuel type, seating capacity */}
+<div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6'>
+  <div className='flex flex-col w-full'>
+    <label>Fuel Type</label>
+    <select onChange={e=> setCar({...car, fuel_type:e.target.value})}  value={car.fuel_type} className='px-3 py-2 mt-1 border border-borderColor rounded-md outline-amber-950'>
+      <option value="">Select a fuel type</option>
+      <option value="GAS">GAS</option>
+      <option value="Diesel">Diesel</option>
+      <option value="Petrol">Petrol</option>
+      <option value="Electric">Electric</option>
+      <option value="Hybrid">Hybrid</option>
+    </select>
+  
+  </div>
+   <div className='flex flex-col w-full'>
+    <label htmlFor="">Seating Capacity  </label>
+    <input type="number" placeholder='4' required className='px-3 py-3 mt-1 border border-b-sky-950 rounded-md outline-amber-500' value={car.seating_capacity} onChange={e=> setCar({...car, seating_capacity: e.target.value})} />
+  </div>
+
+</div>
+
+{/* car location */}
+
+
 
 
 </form>
