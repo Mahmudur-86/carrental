@@ -12,7 +12,7 @@ const generateToken = (userId) =>  {
 }
 
 
-// Resgister User
+// Register User
 export const registerUser = async (req,res) =>  {
 
 try {
@@ -66,6 +66,7 @@ res.json({success:true, token})
 }
 }
 
+// get user data using token (jwt)
 
 
 

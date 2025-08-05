@@ -16,12 +16,14 @@ await connectDB()
 app.use(cors());
 app.use(express.json());
 
-app.get ('/', (req,res)=> res.send("server is running"))
+app.get ('/', (req,res)=> res.send("server is running!!"))
 app.use('/api/user', userRouter)
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, ()=> console.log(`server running on port ${PORT}`))
+
+
 
 
 
