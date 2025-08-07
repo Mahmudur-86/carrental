@@ -8,8 +8,8 @@ import Car from "../models/Car.js";
 const checkAvailability = async (car, pickupDate, returnDate) =>{
 
 const bookings = await Booking.find({
-    car,
-    pickUpDate:{$lte: returnDate},
+    car ,
+    pickupDate:{$lte: returnDate},
     returnDate:{$gte: pickupDate},
 })
 return bookings.length === 0;
@@ -88,7 +88,7 @@ res.json({success:true, message:"Booking Created"})
 export const getUserBookings = async (req, res) =>{
     try {
         const {_id} = req.user;
-const bookings = await Booking.find({user: _id}).populate("car").sort({createdAt: -1})
+const bookings = await Booking.find({user:_id}).populate("car").sort({createdAt: -1})
 res.json({success:true, bookings})
 
 
@@ -105,7 +105,7 @@ export const getOwnerBookings = async (req, res) =>{
        if(req.user.role !== 'owner'){
         return res.json({success:false, message:"Unauthorized"})
        }
-       const bookings = await Booking.find({owner: req.user,_id}).populate('car user').select("-user.password").sort({createdAt: -1})
+       const bookings = await Booking.find({owner: req.user._id}).populate('car user').select("-user.password").sort({createdAt: -1})
        res.json({success:true, bookings})
 
 
